@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Ansh</h1>
-<h3 align="center">Developer by Day, Hacker by Night: Exploring the World of</h3>
+<h3 align="center">Hacker by Day, Developer by Night: Exploring the World of Student Coding</h3>
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=ansh3108" alt="ansh3108" /></a> </p>
 
