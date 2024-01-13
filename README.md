@@ -5,7 +5,7 @@
 
 * 📝 I regularly write articles on [https://phisherr.blogspot.com/](https://phisherr.blogspot.com/)
 
-* 💬 Ask me about **Machine earning, Hardware's or Cybersecurity**
+* 💬 Ask me about **Machine Learning, Hardware's or Cybersecurity**
 
 * 📫 How to reach me **itz.anshkumar@gmail.com**
 
