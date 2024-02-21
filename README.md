@@ -10,6 +10,10 @@
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=ansh3108" alt="ansh3108" /></a> </p>
 
+<p align="left"> <a href="https://github.com/ansh3108"><img src="https://github-profile-trophy.vercel.app/?username=ansh3108" alt="ansh3108" /></a> </p>
+
+
+
 
 * 📝 I regularly write articles on [https://phisherr.blogspot.com/](https://phisherr.blogspot.com/)
 
