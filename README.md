@@ -46,3 +46,5 @@
 
 ![Stats](https://github-readme-stats.vercel.app/api?username=ansh3108\&show_icons=true\&theme=dark#)
 
+
+![GitHub Activity Graph](https://github-readme-activity-graph.vercel.app/graph?username=ansh3108&theme=tokyo-night)
