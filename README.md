@@ -46,7 +46,7 @@
 
 [![GitHub Streak](https://streak-stats.demolab.com?user=ansh3108&theme=transparent&hide_border=true&mode=weekly)](https://git.io/streak-stats)
 
+![Stats](https://github-readme-stats.vercel.app/api?username=ansh3108\&show_icons=true\&theme=dark#)
 
 
 
-![](https://github-readme-streak-stats.herokuapp.com/?user=ansh3108&theme=dark&hide_border=false)<br/>
