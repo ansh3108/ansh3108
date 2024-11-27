@@ -21,7 +21,7 @@
 
 
 
-* 💬 Ask me about **WEB3, Hardware's or Cybersecurity**
+* 💬 Ask me about **WEB3, Artificial Intelligence or Cybersecurity**
   
 
 * 📫 How to reach me *ansh@anshk.tech*
