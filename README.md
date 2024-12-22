@@ -1,5 +1,7 @@
 <h1 align="center">Hi 👋, I'm Ansh</h1>
-<h3 align="center">Hacker by Day, Developer by Night: Exploring the World of Student Coding</h3>
+<h3 align="center">Exploring the World of Student Coding!</h3>
+
+
 
 
 ![](https://komarev.com/ghpvc/?username=ansh3108&color=blueviolet)
