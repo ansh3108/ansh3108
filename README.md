@@ -26,7 +26,7 @@
 * 💬 Ask me about **WEB3, Artificial Intelligence or Cybersecurity**
   
 
-* 📫 How to reach me *ansh@anshk.tech*
+* 📫 How to reach me *itz.anshkumar@gmail.com*
 
 
   
