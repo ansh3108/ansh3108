@@ -50,4 +50,4 @@
 ![Stats](https://github-readme-stats.vercel.app/api?username=ansh3108\&show_icons=true\&theme=dark#)
 
 
-
+![snake animation](https://github.com/<seu ansh3108>/<seu ansh3108>/blob/output/github-contribution-grid-snake2.svg)
