@@ -31,7 +31,7 @@
 
   
 
-* ⚡ Fun fact **This student developer once wrote a program so efficient that even their coffee couldn't keep up – it had to upgrade to espresso to match the speed of their coding prowess!**
+* ⚡ Fun fact  **This student developer once wrote a program so efficient that even his coffee couldn't keep up – it had to upgrade to espresso to match the speed of his coding prowess!**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
