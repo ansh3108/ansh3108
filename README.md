@@ -1,15 +1,7 @@
-# Hi 👋, I'm Ansh
-
-I'm a dev who loves building and learning fast.
-Currently focused on **WEB3 Development**, especially on **Solana with Rust**, and exploring AI/ML Integrations. 
-
-## What I'm Working On
-- Web3 Infrastructure and Solana Ecosystem
-- Rust-based tools and Smart Contracts
-- Projects that combine AI/ML with blockchain
-
-## Interests
-- Web3 & decentralized systems
-- Rust & backend performance
-- AI/ML experimentation
-
+<a href="https://github.com/ansh3108/ansh3108">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/ansh3108/ansh3108/main/dark_mode.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/ansh3108/ansh3108/main/light_mode.svg">
+    <img alt="ansh3108's GitHub Profile" src="https://raw.githubusercontent.com/ansh3108/ansh3108/main/light_mode.svg" width="100%">
+  </picture>
+</a>
