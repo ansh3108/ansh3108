@@ -10,6 +10,7 @@ load_dotenv()
 
 HEADERS = {'authorization': 'token '+ os.environ['ACCESS_TOKEN']}
 USER_NAME = os.environ['USER_NAME']
+IGNORED_REPOS = [f'{USER_NAME}/SecList']
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
 
 def daily_readme(birthday):
@@ -140,7 +141,7 @@ def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, delet
         if request.status_code == 200:
             if request.json()['data']['repository']['defaultBranchRef'] != None: 
                 return loc_counter_one_repo(owner, repo_name, data, cache_comment, request.json()['data']['repository']['defaultBranchRef']['target']['history'], addition_total, deletion_total, my_commits)
-            else: return 0
+            else: return [0, 0, 0]
         if request.status_code in (502, 503, 429):
             wait_time = 2 ** attempt
             print(f'   Retrying {owner}/{repo_name} (attempt {attempt+1}/5, status {request.status_code}, waiting {wait_time}s)')
@@ -150,7 +151,7 @@ def recursive_loc(owner, repo_name, data, cache_comment, addition_total=0, delet
     if request.status_code != 200:
         print(f'   Skipping {owner}/{repo_name} (status {request.status_code} after retries)')
         force_close_file(data, cache_comment)
-        return 0
+        return [0, 0, 0]
 
 def loc_counter_one_repo(owner, repo_name, data, cache_comment, history, addition_total, deletion_total, my_commits):
     for node in history['edges']:
@@ -227,6 +228,12 @@ def cache_builder(edges, comment_size, force_cache, loc_add=0, loc_del=0):
     for index in range(len(edges)):
         repo_hash, commit_count, *__ = data[index].split()
         if repo_hash == hashlib.sha256(edges[index]['node']['nameWithOwner'].encode('utf-8')).hexdigest():
+            
+            # --- Skip ignored massive repositories to prevent 502 timeouts ---
+            if edges[index]['node']['nameWithOwner'] in IGNORED_REPOS:
+                data[index] = repo_hash + ' 0 0 0 0\n'
+                continue
+            
             try:
                 if int(commit_count) != edges[index]['node']['defaultBranchRef']['target']['history']['totalCount']:
                     owner, repo_name = edges[index]['node']['nameWithOwner'].split('/')
