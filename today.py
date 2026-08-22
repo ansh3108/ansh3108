@@ -10,7 +10,16 @@ load_dotenv()
 
 HEADERS = {'authorization': 'token '+ os.environ['ACCESS_TOKEN']}
 USER_NAME = os.environ['USER_NAME']
-IGNORED_REPOS = [f'{USER_NAME}/SecList']
+IGNORED_REPOS = [
+    f'{USER_NAME}/Seclists',
+    f'{USER_NAME}/SecList',
+    f'{USER_NAME}/solidity',
+    f'{USER_NAME}/Thinkboard',
+    f'{USER_NAME}/voting-26',
+    f'{USER_NAME}/Fraps',
+    f'{USER_NAME}/Slack-App',
+    f'{USER_NAME}/Voting-management-system'
+]
 QUERY_COUNT = {'user_getter': 0, 'follower_getter': 0, 'graph_repos_stars': 0, 'recursive_loc': 0, 'graph_commits': 0, 'loc_query': 0}
 
 def daily_readme(birthday):
@@ -237,6 +246,7 @@ def cache_builder(edges, comment_size, force_cache, loc_add=0, loc_del=0):
             try:
                 if int(commit_count) != edges[index]['node']['defaultBranchRef']['target']['history']['totalCount']:
                     owner, repo_name = edges[index]['node']['nameWithOwner'].split('/')
+                    print(f"Fetching LOC for {owner}/{repo_name}...")
                     loc = recursive_loc(owner, repo_name, data, cache_comment)
                     data[index] = repo_hash + ' ' + str(edges[index]['node']['defaultBranchRef']['target']['history']['totalCount']) + ' ' + str(loc[2]) + ' ' + str(loc[0]) + ' ' + str(loc[1]) + '\n'
             except TypeError:
