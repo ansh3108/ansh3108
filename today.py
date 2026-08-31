@@ -44,9 +44,16 @@ def simple_request(func_name, query, variables):
     """
     Returns a request, or raises an Exception if the response does not succeed.
     """
-    request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables':variables}, headers=HEADERS)
-    if request.status_code == 200:
-        return request
+    import time
+    for attempt in range(5):
+        request = requests.post('https://api.github.com/graphql', json={'query': query, 'variables':variables}, headers=HEADERS)
+        if request.status_code == 200:
+            return request
+        if request.status_code in (502, 503):
+            print(f"Retrying {func_name} (attempt {attempt+1}/5, status {request.status_code})")
+            time.sleep(2 ** attempt)
+            continue
+        break
     raise Exception(func_name, ' has failed with a', request.status_code, request.text, QUERY_COUNT)
 
 def graph_commits(start_date, end_date):
@@ -82,9 +89,7 @@ def graph_repos_stars(count_type, owner_affiliation, cursor=None, add_loc=0, del
                     node {
                         ... on Repository {
                             nameWithOwner
-                            stargazers {
-                                totalCount
-                            }
+                            stargazerCount
                         }
                     }
                 }
@@ -281,7 +286,7 @@ def stars_counter(data):
     total_stars = 0
     for node in data:
         if node['node'] is not None:
-            total_stars += node['node']['stargazers']['totalCount']
+            total_stars += node['node']['stargazerCount']
     return total_stars
 
 def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib_data, follower_data, loc_data):
@@ -293,9 +298,10 @@ def svg_overwrite(filename, age_data, commit_data, star_data, repo_data, contrib
     justify_format(root, 'repo_data', repo_data, 6)
     justify_format(root, 'contrib_data', contrib_data)
     justify_format(root, 'follower_data', follower_data, 10)
-    justify_format(root, 'loc_data', loc_data[2], 12)
+    justify_format(root, 'loc_data', loc_data[2], 0)
+    find_and_replace(root, 'loc_data_dots', ' . ')
     justify_format(root, 'loc_add', loc_data[0])
-    justify_format(root, 'loc_del', loc_data[1], 8)
+    justify_format(root, 'loc_del', loc_data[1], 0)
     tree.write(filename, encoding='utf-8', xml_declaration=True)
 
 def justify_format(root, element_id, new_text, length=0):
@@ -369,6 +375,13 @@ def formatter(query_type, difference, funct_return=False, whitespace=0):
         return f"{'{:,}'.format(funct_return): <{whitespace}}"
     return funct_return
 
+def compact_number(num):
+    if num >= 1_000_000:
+        return f"{num / 1_000_000:.1f}M+"
+    elif num >= 1_000:
+        return f"{num // 1_000}k+"
+    return str(num)
+
 if __name__ == '__main__':
     print('Calculation times:')
     user_data, user_time = perf_counter(user_getter, USER_NAME)
@@ -387,7 +400,7 @@ if __name__ == '__main__':
     follower_data, follower_time = perf_counter(follower_getter, USER_NAME)
 
     for index in range(len(total_loc)-1): 
-        total_loc[index] = '{:,}'.format(total_loc[index])
+        total_loc[index] = compact_number(total_loc[index])
 
     svg_overwrite('dark_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1])
     svg_overwrite('light_mode.svg', age_data, commit_data, star_data, repo_data, contrib_data, follower_data, total_loc[:-1])
